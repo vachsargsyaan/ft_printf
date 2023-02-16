@@ -1,47 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printnum.c                                      :+:      :+:    :+:   */
+/*   ft_print_point.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 20:04:33 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/02/15 19:04:40 by vacsargs         ###   ########.fr       */
+/*   Created: 2023/02/14 18:56:12 by vacsargs          #+#    #+#             */
+/*   Updated: 2023/02/16 16:32:48 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printnum(int num)
+int	ft_print_point(unsigned long long lu)
 {
-	long	nb;
-	int		i;
+	int					count;
 
-	nb = num;
-	i = 0;
-	if (nb < 0)
-	{
-		write(1, "-", 1);
-		nb = -nb;
-		i++;
-	}
-	if (nb > 9)
-	{
-		i += ft_printnum(nb / 10);
-		i += ft_printnum(nb % 10);
-	}
-	else
-	{
-		nb += 48;
-		write(1, &nb, 1);
-		i++;
-	}
-	return (i);
+	count = 0;
+	if (!lu)
+		return (ft_cahrs("0x0"));
+	count += ft_cahrs("0x");
+	count += ft_print_hex(lu, 'x');
+	return (count);
 }
-
-// int main()
-// {
-// 	int i = ft_printnum(+2148);
-// 	printf("\n%d\n", i);
-// 	return (0);
-// }

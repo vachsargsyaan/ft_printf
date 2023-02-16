@@ -6,7 +6,7 @@
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:26:38 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/02/10 21:46:27 by vacsargs         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:26:06 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ int	ft_cahrs(const char *str)
 
 	i = 0;
 	len = 0;
+	if (!str)
+	{
+		return (write(1, "(null)", 6));
+	}
 	while (str[i])
 	{
 		write(1, &str[i], 1);

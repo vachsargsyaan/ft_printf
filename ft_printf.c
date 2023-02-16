@@ -6,38 +6,54 @@
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:38:05 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/02/10 21:59:17 by vacsargs         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:37:06 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_for(va_list args, const char format)
+int	ft_print_char(int c)
 {
-	int i;
+	write(1, &c, 1);
+	return (1);
+}
+
+int	ft_for(va_list args, const char format)
+{
+	int	i;
 
 	i = 0;
-	if(format == 's')
-	{
-	i += ft_chars(va_arg(args, char *));
-	}
+	if (format == 'c')
+		i += ft_print_char(va_arg(args, int));
+	else if (format == 's')
+		i += ft_cahrs(va_arg(args, char *));
+	else if (format == 'p')
+		i += ft_print_point(va_arg(args, unsigned long long));
+	else if (format == 'i' || format == 'd')
+		i += ft_printnum(va_arg(args, int));
+	else if (format == 'u')
+		i += ft_it(va_arg(args, unsigned int));
+	else if (format == 'x' || format == 'X')
+		i += ft_print_hex(va_arg(args, unsigned int), format);
+	else if (format == '%')
+		i += ft_print_char('%');
 	return (i);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	int	i;
-	int	len;
-	args;
+	int		i;
+	int		len;
+	va_list	args;
 
 	i = 0;
 	len = 0;
 	va_start(args, str);
 	while (str[i])
 	{
-		if(str[i]== '%')
+		if (str[i] == '%')
 		{
-			len += ft_for(args,str[i+1]);
+			len += ft_for(args, str[++i]);
 			i++;
 		}
 		else
@@ -51,11 +67,11 @@ int	ft_printf(const char *str, ...)
 	return (len);
 }
 
-int main()
-{
-	char *p;
-
-	p = "sdad";
-	ft_printf("sdassadsadfsd%s",p);
-	return (0);
-}
+// int main()
+// {
+// 	int a =1234;
+// 	int *p;
+// 	p = &a;
+// 	printf("%d\n", printf(" %x ", 0));
+// 	ft_printf("%d\n", ft_printf(" %x ", 0));
+// }

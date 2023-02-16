@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printnum.c                                      :+:      :+:    :+:   */
+/*   ft_it.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vacsargs <vacsargs@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 20:04:33 by vacsargs          #+#    #+#             */
-/*   Updated: 2023/02/15 19:04:40 by vacsargs         ###   ########.fr       */
+/*   Created: 2023/02/15 17:43:51 by vacsargs          #+#    #+#             */
+/*   Updated: 2023/02/16 16:25:32 by vacsargs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printnum(int num)
+int	ft_it(unsigned int num)
 {
-	long	nb;
-	int		i;
+	long				nb;
+	unsigned int		i;
 
 	nb = num;
 	i = 0;
@@ -27,8 +27,8 @@ int	ft_printnum(int num)
 	}
 	if (nb > 9)
 	{
-		i += ft_printnum(nb / 10);
-		i += ft_printnum(nb % 10);
+		i += ft_it(nb / 10);
+		i += ft_it(nb % 10);
 	}
 	else
 	{
@@ -41,7 +41,7 @@ int	ft_printnum(int num)
 
 // int main()
 // {
-// 	int i = ft_printnum(+2148);
-// 	printf("\n%d\n", i);
-// 	return (0);
+// 	unsigned int i = 3000000000;
+// 	printf("%u",i);
+// 	printf("\n%s",ft_itoa(i));
 // }
